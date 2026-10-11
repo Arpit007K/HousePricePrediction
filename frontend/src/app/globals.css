@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { @apply bg-navy-950 text-slate-300 antialiased font-sans; }
+
+@layer components {
+  .panel { @apply rounded-3xl border border-white/10 bg-navy-900/80 shadow-2xl shadow-black/30; }
+  .input {
+    @apply w-full rounded-lg border border-white/10 bg-navy-950/70 px-3.5 py-2.5 text-[15px] text-white
+           placeholder:text-slate-600 transition focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-400/30;
+  }
+  .input[aria-invalid="true"] { @apply border-rose-400/70 focus:border-rose-400 focus:ring-rose-400/30; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2
+           focus-visible:ring-offset-navy-950 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary { @apply btn bg-teal-400 text-navy-950 hover:bg-teal-300; }
+  .btn-ghost { @apply btn border border-white/15 text-slate-200 hover:border-teal-400/60 hover:text-white; }
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(94, 234, 212, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(94, 234, 212, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 30% 20%, black 20%, transparent 70%);
+}
+
+@keyframes hero-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero-in { animation: hero-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@keyframes pop-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+.pop-in { animation: pop-in 0.35s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
